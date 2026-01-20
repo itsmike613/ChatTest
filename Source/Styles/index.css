@@ -1,0 +1,62 @@
+/* Keep CSS minimal; rely on Webpixels */
+
+.chat-messages {
+    height: min(62vh, 640px);
+    overflow-y: auto;
+    background: var(--x-surface-secondary, #f6f7f9);
+}
+
+.msg-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.msg-row.me {
+    justify-content: flex-end;
+}
+
+.msg-row.them {
+    justify-content: flex-start;
+}
+
+.msg-row.system {
+    justify-content: center;
+}
+
+.msg-bubble {
+    max-width: min(80%, 620px);
+    padding: 10px 12px;
+    border-radius: 14px;
+    line-height: 1.25;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.msg-me {
+    background: #1d4ed8;
+    color: white;
+    border-bottom-right-radius: 6px;
+}
+
+.msg-them {
+    background: #e5e7eb;
+    color: #111827;
+    border-bottom-left-radius: 6px;
+}
+
+.msg-system {
+    background: #fee2e2;
+    color: #7f1d1d;
+    border-radius: 999px;
+    font-size: 0.92rem;
+}
+
+.badge-interest {
+    cursor: pointer;
+    user-select: none;
+}
+
+.badge-interest.selected {
+    background: #111827 !important;
+    color: white !important;
+}

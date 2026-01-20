@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Random 1-on-1 Chat</title>
+
+    <!-- Webpixels CSS Framework v3 (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/@webpixels/css@3.0.1/dist/index.css">
+
+    <!-- Phosphor Icons (CDN) -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+
+    <link rel="stylesheet" href="/Source/Styles/index.css" />
+</head>
+
+<body class="bg-surface-secondary">
+
+    <!-- Top bar -->
+    <header class="navbar navbar-expand-lg bg-surface border-bottom sticky-top">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#" id="brandHome">
+                <img src="/Source/Images/logo.png" alt="Logo" width="28" height="28" class="rounded-2">
+                <span class="fw-semibold">Random Chat</span>
+            </a>
+            <div class="ms-auto d-flex align-items-center gap-2">
+                <button id="btnTopSettings" class="btn btn-sm btn-neutral d-none">
+                    <i class="ph ph-gear"></i><span class="ms-2 d-none d-sm-inline">Settings</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid px-3 px-md-4 py-4" style="max-width: 1100px;">
+        <!-- Toast -->
+        <div id="toast" class="toast align-items-center text-bg-dark border-0 position-fixed bottom-0 end-0 m-3"
+            role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastText">...</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" id="toastClose"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+
+        <!-- LANDING -->
+        <section id="viewLanding" class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img src="/Source/Images/logo.png" alt="Logo" width="44" height="44" class="rounded-3">
+                    <div>
+                        <h1 class="h4 mb-1">Random 1-on-1 text chat</h1>
+                        <p class="text-muted mb-0">Match instantly with filters. No video. No downloads.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+                    <button id="goLogin" class="btn btn-primary">
+                        <i class="ph ph-sign-in"></i><span class="ms-2">Login</span>
+                    </button>
+                    <button id="goSignup" class="btn btn-neutral">
+                        <i class="ph ph-user-plus"></i><span class="ms-2">Sign up</span>
+                    </button>
+                </div>
+
+                <div class="mt-4 small text-muted">
+                    By using this app you agree to be respectful. Reports are stored for admin review.
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTH -->
+        <section id="viewAuth" class="d-none">
+            <div class="row g-3">
+                <!-- Login -->
+                <div class="col-12 col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h2 class="h5 mb-3">Login</h2>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input id="loginEmail" class="form-control" type="email" autocomplete="email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input id="loginPassword" class="form-control" type="password"
+                                    autocomplete="current-password">
+                            </div>
+
+                            <button id="btnLogin" class="btn btn-primary w-100">
+                                <i class="ph ph-sign-in"></i><span class="ms-2">Login</span>
+                            </button>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="authToSignup">Need an account? Sign up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signup -->
+                <div class="col-12 col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h2 class="h5 mb-3">Sign up</h2>
+
+                            <div class="row g-2">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Username</label>
+                                    <input id="suUsername" class="form-control" placeholder="3–16, a-z A-Z 0-9 _"
+                                        autocomplete="off">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Display name</label>
+                                    <input id="suDisplayName" class="form-control" placeholder="3–16"
+                                        autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mt-1">
+                                <div class="col-12">
+                                    <label class="form-label">Email</label>
+                                    <input id="suEmail" class="form-control" type="email" autocomplete="email">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Password</label>
+                                    <input id="suPassword" class="form-control" type="password"
+                                        autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="row g-2 mt-1">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">DOB</label>
+                                    <input id="suDob" class="form-control" type="date">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Sex</label>
+                                    <select id="suSex" class="form-select">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="btnSignup" class="btn btn-neutral w-100 mt-3">
+                                <i class="ph ph-user-plus"></i><span class="ms-2">Create account</span>
+                            </button>
+
+                            <div class="text-center mt-3">
+                                <button class="btn btn-sm btn-link" id="authToLogin">Already have an account?
+                                    Login</button>
+                            </div>
+
+                            <div class="small text-muted mt-2">
+                                Usernames are unique. Profiles are used for matching and chat display.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOME -->
+        <section id="viewHome" class="d-none">
+            <div class="row g-3">
+                <div class="col-12 col-lg-5">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h2 class="h5 mb-0">Matching Filters</h2>
+                                <button id="btnSettings" class="btn btn-sm btn-neutral">
+                                    <i class="ph ph-gear"></i><span class="ms-2">Account</span>
+                                </button>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Sex filter</label>
+                                <select id="filterSex" class="form-select">
+                                    <option value="either" selected>Either</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label">Interests</label>
+                                <div id="interestPicker" class="d-flex flex-wrap gap-2"></div>
+                                <div class="small text-muted mt-2">Select none for no interest constraint.</div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h3 class="h6 mb-2">Suggest an interest</h3>
+                            <div class="d-flex gap-2">
+                                <input id="interestSuggestText" class="form-control" placeholder="e.g., Chess"
+                                    maxlength="40">
+                                <button id="btnSuggestInterest" class="btn btn-neutral">
+                                    <i class="ph ph-paper-plane-tilt"></i>
+                                </button>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <button id="btnMatch" class="btn btn-primary w-100">
+                                <i class="ph ph-lightning"></i><span class="ms-2">Match</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-7">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h2 class="h5 mb-2">How it works</h2>
+                            <ul class="text-muted mb-0">
+                                <li>We match you with one person at a time.</li>
+                                <li>When a chat ends, it locks immediately.</li>
+                                <li>Reports are stored for admin review.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MATCHING -->
+        <section id="viewMatching" class="d-none">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5 text-center">
+                    <div class="spinner-border" role="status" aria-label="Matching"></div>
+                    <h2 class="h5 mt-3 mb-1">Matching…</h2>
+                    <p class="text-muted mb-4">Hang tight. You can cancel anytime.</p>
+                    <button id="btnCancelMatching" class="btn btn-neutral">
+                        <i class="ph ph-x"></i><span class="ms-2">Exit</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAT -->
+        <section id="viewChat" class="d-none">
+            <div class="card shadow-sm">
+                <div class="card-header bg-surface d-flex align-items-center justify-content-between gap-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="/Source/Images/logo.png" alt="Logo" width="28" height="28" class="rounded-2">
+                        <div>
+                            <div class="fw-semibold" id="partnerName">Partner</div>
+                            <div class="small text-muted">
+                                <span id="partnerUsername">@username</span> · <span id="partnerSex">sex</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="badge text-bg-secondary" id="chatStatusBadge">Active</span>
+                </div>
+
+                <div class="card-body p-0">
+                    <div id="messages" class="chat-messages p-3"></div>
+                </div>
+
+                <div class="card-footer bg-surface border-top">
+                    <div class="d-flex gap-2 align-items-center">
+                        <input id="msgInput" class="form-control" placeholder="Type a message…" maxlength="500">
+                        <button id="btnSend" class="btn btn-primary">
+                            <i class="ph ph-paper-plane-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <button id="btnRematch" class="btn btn-neutral">
+                            <i class="ph ph-arrows-clockwise"></i><span class="ms-2">Rematch</span>
+                        </button>
+                        <button id="btnExitChat" class="btn btn-neutral">
+                            <i class="ph ph-door"></i><span class="ms-2">Exit</span>
+                        </button>
+                        <button id="btnReport" class="btn btn-danger ms-sm-auto">
+                            <i class="ph ph-flag"></i><span class="ms-2">Report</span>
+                        </button>
+                    </div>
+
+                    <div class="small text-muted mt-2" id="chatLockedHint"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="viewSettings" class="d-none">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h2 class="h5 mb-0">Account & Settings</h2>
+                        <button id="btnBackHome" class="btn btn-sm btn-neutral">
+                            <i class="ph ph-arrow-left"></i><span class="ms-2">Back</span>
+                        </button>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Username</label>
+                            <input id="stUsername" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Display name</label>
+                            <input id="stDisplayName" class="form-control" autocomplete="off">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">DOB</label>
+                            <input id="stDob" class="form-control" type="date">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Sex</label>
+                            <select id="stSex" class="form-select">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+                        <button id="btnSaveSettings" class="btn btn-primary">
+                            <i class="ph ph-floppy-disk"></i><span class="ms-2">Save</span>
+                        </button>
+                        <button id="btnLogout" class="btn btn-neutral">
+                            <i class="ph ph-sign-out"></i><span class="ms-2">Logout</span>
+                        </button>
+                        <button id="btnDeleteAccount" class="btn btn-danger ms-sm-auto">
+                            <i class="ph ph-trash"></i><span class="ms-2">Delete Account</span>
+                        </button>
+                    </div>
+
+                    <div class="small text-muted mt-3">
+                        Deleting your account removes your profile and attempts to clean any waiting/chat state.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Report confirm modal -->
+    <div class="modal" tabindex="-1" id="reportModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report chat?</h5>
+                    <button type="button" class="btn-close" id="reportModalClose" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-0">Report this chat for admin review? This will end the chat.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-neutral" id="reportModalCancel">Cancel</button>
+                    <button class="btn btn-danger" id="reportModalConfirm">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/Source/Scripts/index.js"></script>
+</body>
+
+</html>
